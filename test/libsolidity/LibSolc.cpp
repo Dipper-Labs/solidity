@@ -45,6 +45,7 @@ Json::Value compile(string const& _input)
 	string output(solidity_compile(_input.c_str(), nullptr));
 	Json::Value ret;
 	BOOST_REQUIRE(jsonParseStrict(output, ret));
+	solidity_cleanup();
 	return ret;
 }
 
@@ -56,12 +57,14 @@ BOOST_AUTO_TEST_CASE(read_version)
 {
 	string output(solidity_version());
 	BOOST_CHECK(output.find(VersionString) == 0);
+	solidity_cleanup();
 }
 
 BOOST_AUTO_TEST_CASE(read_license)
 {
 	string output(solidity_license());
 	BOOST_CHECK(output.find("GNU GENERAL PUBLIC LICENSE") != string::npos);
+	solidity_cleanup();
 }
 
 BOOST_AUTO_TEST_CASE(standard_compilation)

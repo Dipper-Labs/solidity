@@ -5,6 +5,7 @@ Language Features:
 
 
 Compiler Features:
+ * C API (``libsolc`` / raw ``soljson.js``): Introduce ``solidity_cleanup`` method which releases all internal buffers to save memory.
 
 
 Bugfixes:
