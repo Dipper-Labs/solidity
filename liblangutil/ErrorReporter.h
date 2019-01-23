@@ -40,6 +40,11 @@ public:
 
 	ErrorReporter& operator=(ErrorReporter const& _errorReporter);
 
+	void append(ErrorList const& _errorList)
+	{
+		m_errorList.insert(m_errorList.end(), std::begin(_errorList), std::end(_errorList));
+	}
+
 	void warning(std::string const& _description);
 
 	void warning(SourceLocation const& _location, std::string const& _description);
