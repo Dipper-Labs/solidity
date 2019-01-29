@@ -560,7 +560,8 @@ bool ASTJsonConverter::visit(VariableDeclarationStatement const& _node)
 	setJsonNode(_node, "VariableDeclarationStatement", {
 		make_pair("assignments", std::move(varDecs)),
 		make_pair("declarations", toJson(_node.declarations())),
-		make_pair("initialValue", toJsonOrNull(_node.initialValue()))
+		make_pair("initialValue", toJsonOrNull(_node.initialValue())),
+		make_pair("label", _node.documentation() ? Json::Value(*_node.documentation()) : Json::nullValue)
 	});
 	return false;
 }
