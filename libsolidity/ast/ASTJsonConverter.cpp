@@ -572,7 +572,8 @@ bool ASTJsonConverter::visit(VariableDeclarationStatement const& _node)
 bool ASTJsonConverter::visit(ExpressionStatement const& _node)
 {
 	setJsonNode(_node, "ExpressionStatement", {
-		make_pair("expression", toJson(_node.expression()))
+		make_pair("expression", toJson(_node.expression())),
+		make_pair("label", _node.documentation() ? Json::Value(*_node.documentation()) : Json::nullValue)
 	});
 	return false;
 }
